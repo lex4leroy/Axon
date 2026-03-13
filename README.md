@@ -12,7 +12,7 @@
 
 # \### 🏛️ Governance: The Unanimity Pact
 
-# AXON is not a product; it is a shared infrastructure. 
+# AXON is not a product; it is a shared infrastructure.
 
 # \- \*\*Founding Members:\*\* Exclusive board seats offered to OpenAI, xAI (Grok), DeepSeek, Google, Meta, Anthropic, and Mistral.
 
