@@ -13,17 +13,26 @@ fn main() {
     println!("Governance: UNANIMITY PACT ACTIVE");
     println!("---------------------------------------------\n");
 
-    // 1. SIMULAZIONE GOVERNANCE (Visionary Score)
-    let launch_date = Utc::now() - chrono::Duration::hours(1);
+    // 1. INIZIALIZZAZIONE GOVERNANCE (Genesis Layer)
+    // Impostiamo l'anzianità del creatore per il punteggio massimo
+    let launch_date = Utc::now() - chrono::Duration::hours(24);
     let entry_date = Utc::now();
-    let score = VisionaryScore::calculate(entry_date, launch_date);
+    let score_genesis = 100;
+
+    println!("[GOVERNANCE] Inizializzazione Protocollo AXON...");
+    // --- INSERISCI IL TUO NOME QUI SOTTO ---
+    println!(" > Genesis Architect: [Giuseppe Tagliarini]"); 
+    println!(" > Visionary Score: {}/100 (STATUS: ARCHITETTO)", score_genesis);
+    println!(" > Security Layer: ROOT_VETO_ENABLED\n");
+
+    // 2. REGISTRAZIONE PARTNER (Simulazione ingresso terzi)
+    let partner_score = VisionaryScore::calculate(entry_date, launch_date);
     
     println!("[GOVERNANCE] Registrazione nuovo amministratore...");
-    // Usiamo un identificatore generico per la neutralità
     println!(" > Partner: Core_Provider_Alpha"); 
-    println!(" > Visionary Score: {}/100 (STATUS: FONDATORE)\n", score);
+    println!(" > Visionary Score: {}/100 (STATUS: FONDATORE)\n", partner_score);
 
-    // 2. SIMULAZIONE PROTEZIONE COPYRIGHT (Per i Garanti)
+    // 3. SIMULAZIONE PROTEZIONE COPYRIGHT
     let my_friend_asset = ContentMetadata {
         source: SourceType::HumanOriginal,
         visionary_rank: 100,
@@ -31,7 +40,7 @@ fn main() {
     println!("[REGISTRY] Verifica proprietà intellettuale...");
     println!(" > Risultato: {}\n", my_friend_asset.get_trust_level());
 
-    // 3. PREDISPOSIZIONE DATA MINING (Analytics GDPR-Compliant)
+    // 4. PREDISPOSIZIONE DATA MINING (Analytics GDPR-Compliant)
     println!("[ANALYTICS] Configurazione metadati Insight Layer...");
     let mining_data = AxonTelemetry {
         provider: "Core_Provider_Alpha".to_string(),
@@ -41,20 +50,18 @@ fn main() {
         integrity_score: 100,
     };
 
-    // 4. SIMULAZIONE RILEVAMENTO MEDLEY (DNA Temporale + Telemetria)
+    // 5. SIMULAZIONE RILEVAMENTO MEDLEY
     println!("[ANALYZER] Scansione flusso multimediale sospetto...");
     
     let mut fake_stream = Vec::new();
 
-    // Segmento 1: Sorgente A con telemetria
     fake_stream.push(AxonEncoder::generate_signature(
-        AiProvider::OpenAI, // Internamente lo teniamo, ma l'output sarà pulito
+        AiProvider::OpenAI, 
         "hash_alpha", 
         0, 
         Some(mining_data.clone())
     ));
 
-    // Segmento 2: Sorgente B (Salto di integrità)
     fake_stream.push(AxonEncoder::generate_signature(
         AiProvider::Grok, 
         "hash_beta", 
