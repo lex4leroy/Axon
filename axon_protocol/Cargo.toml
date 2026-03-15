@@ -1,12 +1,25 @@
 [package]
-name = "axon-protocol"
+name = "axon_protocol"
 version = "0.1.0"
 edition = "2021"
-license = "MIT"
+authors = ["Your Name <you@example.com>"]
+description = "Universal Provenance & Integrity Layer for Generative AI"
 
 [dependencies]
+# Per la gestione delle date e del calcolo del Visionary Score
+chrono = "0.4"
+
+# Per la crittografia (Hashing BLAKE3, ultra veloce per L3)
 blake3 = "1.5"
+
+# Per la futura integrazione con la blockchain (opzionale per ora, ma utile averlo)
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-chrono = "0.4"
-rand = "0.8"
+
+[lib]
+name = "axon_protocol"
+path = "src/lib.rs"
+
+[[bin]]
+name = "axon_engine"
+path = "src/main.rs"

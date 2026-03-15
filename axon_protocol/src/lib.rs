@@ -1,31 +1,49 @@
-use serde::{Serialize, Deserialize};
-use chrono::Utc;
+pub mod governance;
+pub mod classifier;
+pub mod verifier;
+pub mod analytics; 
 
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+pub use crate::governance::*;
+pub use crate::classifier::*;
+pub use crate::verifier::*;
+pub use crate::analytics::*; 
+
+#[derive(Debug, Clone, PartialEq)]
 pub enum AiProvider {
-    OpenAI, Grok, DeepSeek, Meta, Google, Anthropic,
+    OpenAI,
+    Grok,
+    DeepSeek,
+    HumanCreator, // Per proteggere le opere del tuo amico
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Debug, Clone)]
 pub struct AxonSignature {
     pub provider: AiProvider,
-    pub original_content_hash: String,
-    pub segment_index: u32,
-    pub total_segments: u32,
-    pub created_at: i64,
-    pub is_hallucination: bool,
+    pub hash: String,
+    pub timestamp: u64,
+    pub telemetry: Option<AxonTelemetry>, // Predisposizione per il Data Mining
 }
 
 pub struct AxonEncoder;
+
 impl AxonEncoder {
-    pub fn generate_signature(provider: AiProvider, hash: &str, seg: u32, tot: u32, hall: bool) -> AxonSignature {
+    pub fn generate_signature(
+        provider: AiProvider, 
+        hash: &str, 
+        time: u64, 
+        telemetry: Option<AxonTelemetry> 
+    ) -> AxonSignature {
+        
+        // Logica di Data Mining: se presente, l'evento viene registrato
+        if let Some(ref t) = telemetry {
+            t.log_event();
+        }
+
         AxonSignature {
             provider,
-            original_content_hash: hash.to_string(),
-            segment_index: seg,
-            total_segments: tot,
-            created_at: Utc::now().timestamp(),
-            is_hallucination: hall,
+            hash: hash.to_string(),
+            timestamp: time,
+            telemetry,
         }
     }
 }
