@@ -2,19 +2,19 @@
 name = "axon_protocol"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <you@example.com>"]
-description = "Universal Provenance & Integrity Layer for Generative AI"
+authors = ["Giuseppe Tagliarini <architect@axon-protocol.local>"]
+description = "Universal Provenance, Integrity & Neural Telemetry Layer for Generative AI. Features: Real-time Identity Mining & Sovereign Content Tracking."
 
 [dependencies]
-# Per la gestione delle date e del calcolo del Visionary Score
+# Core Logic
 chrono = "0.4"
-
-# Per la crittografia (Hashing BLAKE3, ultra veloce per L3)
 blake3 = "1.5"
-
-# Per la futura integrazione con la blockchain (opzionale per ora, ma utile averlo)
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+
+# Security & Telemetry (Le nuove sentinelle)
+reqwest = { version = "0.11", features = ["blocking"] }
+machine-uid = "0.2"
 
 [lib]
 name = "axon_protocol"

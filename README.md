@@ -34,6 +34,18 @@
 
 # 
 
+# \### 📡 Neural Telemetry \& Node Integrity (v0.1.0 Update)
+
+# To ensure the global consistency of the AXON Layer 3, this version introduces the \*\*Neural Telemetry Pulse\*\*:
+
+# \- \*\*Node Attestation:\*\* Every active instance performs a cryptographic "Heartbeat" to verify the origin and integrity of the execution environment.
+
+# \- \*\*Genesis Architect Lockdown:\*\* The protocol recognizes the signature of the \*\*Genesis Architect\*\* to prevent unauthorized forks from claiming administrative veto powers.
+
+# \- \*\*Anti-Tampering:\*\* Any modification to the core governance constants triggers an immediate \*\*Security Lockdown\*\*, restricting the node to read-only mode and alerting the network.
+
+# 
+
 # \### 🛠️ Developer Setup
 
 # ```bash
@@ -47,4 +59,10 @@
 # \# Build the engine
 
 # cargo build --release
+
+# 
+
+# \# Run the node
+
+# cargo run
 
