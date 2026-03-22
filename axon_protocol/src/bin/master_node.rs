@@ -1,4 +1,4 @@
-use axon_protocol::TelemetryPayload; // Corretto con la 'o'
+use axon_protocol::TelemetryPayload;
 use axum::{routing::post, Router, Json};
 use std::fs::OpenOptions;
 use std::io::Write;
@@ -6,27 +6,32 @@ use std::process::Command;
 
 #[tokio::main]
 async fn main() {
-    // Definiamo la rotta per ricevere i segnali
     let app = Router::new().route("/pulse", post(receive_pulse));
 
-    // Ci mettiamo in ascolto sulla porta 3000
+    // Ascolto sulla porta 3000
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
-    println!("🍎 AXON COMMAND CENTER (Mac) - ONLINE");
+    println!("🍎 AXON COMMAND CENTER (INTEL WINDOWS) - ONLINE");
     println!("> In ascolto sulla porta 3000...");
     
     axum::serve(listener, app).await.unwrap();
 }
 
-// Funzione corretta per gestire il segnale in arrivo
 async fn receive_pulse(Json(payload): Json<TelemetryPayload>) {
     println!("🚨 PULSE RICEVUTO dal nodo: {}", payload.node_id);
     
-    // Il Mac ti avvisa a voce!
-    let _ = Command::new("say")
-        .arg(format!("New signal from {}", payload.node_id))
+    // --- ADATTAMENTO PER WINDOWS (PowerShell Speech) ---
+    let alert_msg = format!("New signal from {}", payload.node_id);
+    let ps_script = format!(
+        "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('{}')", 
+        alert_msg
+    );
+    
+    let _ = Command::new("powershell")
+        .arg("-Command")
+        .arg(ps_script)
         .spawn();
 
-    // Scrive il segnale nel tuo registro privato (Blockchain)
+    // --- LOG NEL REGISTRO PRIVATO ---
     let log_entry = serde_json::to_string(&payload).unwrap();
     let mut file = OpenOptions::new()
         .create(true)
@@ -35,6 +40,6 @@ async fn receive_pulse(Json(payload): Json<TelemetryPayload>) {
         .unwrap();
 
     if let Err(e) = writeln!(file, "{}", log_entry) {
-        eprintln!("Errore di scrittura: {}", e);
+        eprintln!("Errore di scrittura nel registro: {}", e);
     }
 }

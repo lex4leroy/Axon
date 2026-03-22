@@ -1,3 +1,6 @@
+#![allow(unused_imports)] // <--- Zittisce i warning globali per gli import non usati
+#![allow(dead_code)]       // <--- Zittisce i warning per le funzioni/struct non usate nel binario attuale
+
 use serde::{Serialize, Deserialize};
 
 pub mod governance;
@@ -31,6 +34,7 @@ pub struct TelemetryPayload {
     pub architect: String,
     pub status: String,
     pub timestamp: String,
+    pub version: Option<String>, 
 }
 
 // --- CORE DEL PROTOCOLLO ---
