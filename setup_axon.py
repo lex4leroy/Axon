@@ -10,7 +10,7 @@ project_structure = {
 name = "axon-protocol"
 version = "0.1.0"
 edition = "2021"
-license = "MIT"
+license = "GPL-3.0-or-later"
 
 [dependencies]
 blake3 = "1.5"
@@ -63,7 +63,7 @@ fn main() {
         }
     },
     "contracts": {
-        "AxonGovernance.sol": """// SPDX-License-Identifier: MIT
+        "AxonGovernance.sol": """// SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.20;
 
 contract AxonGovernance {
@@ -100,7 +100,7 @@ contract AxonGovernance {
 ## Global AI Integrity & Provenance Standard
 
 ### Vision
-AXON is an open-source protocol (MIT) designed to embed permanent, blockchain-verifiable DNA into AI-generated media.
+AXON is an open-source protocol (GPLv3) designed to embed permanent, blockchain-verifiable DNA into AI-generated media.
 
 ### Key Features
 - **Temporal DNA:** Detects medleys and malicious edits.
@@ -108,7 +108,7 @@ AXON is an open-source protocol (MIT) designed to embed permanent, blockchain-ve
 - **Hallucination Audit:** Flags content diverted for copyright safety.
 
 ### License
-MIT - Created for global security.
+GPLv3 - Created for global security and artist protection.
 """
 }
 

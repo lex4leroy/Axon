@@ -1,0 +1,78 @@
+cargo :    Compiling 
+axon_protocol v0.1.0 
+(D:\Axon\axon_protocol)
+In riga:1 car:1
++ cargo build 2>&1 | 
+Out-File -Encoding ascii 
+build_err.txt
++ ~~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: (     
+  Compiling ax...\axon_p   
+ rotocol):String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+warning: unused import: 
+`TelemetryPayload`
+ --> src\main.rs:1:21
+  |
+1 | use axon_protocol::{Tel
+emetryPayload, 
+SettlementLayer, 
+AssetType, AssetRegistry, 
+LegacyImporter, 
+YoutubeIntegrity}; 
+  |                     
+^^^^^^^^^^^^^^^^
+  |
+  = note: 
+`#[warn(unused_imports)]` 
+(part of 
+`#[warn(unused)]`) on by 
+default
+
+warning: unused import: 
+`reqwest::blocking::Client`
+ --> src\main.rs:3:5
+  |
+3 | use 
+reqwest::blocking::Client;
+  |     
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: 
+`Command` and `self`
+ --> src\main.rs:4:20
+  |
+4 | use 
+std::process::{Command, 
+self};
+  |                    
+^^^^^^^  ^^^^
+
+error[E0425]: cannot find 
+function 
+`execute_stealth_pulse` in 
+this scope
+  --> src\main.rs:81:17
+   |
+81 |         let _ = execut
+e_stealth_pulse(GENESIS_ARC
+HITECT);
+   |                 
+^^^^^^^^^^^^^^^^^^^^^ not 
+found in this scope
+
+For more information about 
+this error, try `rustc 
+--explain E0425`.
+warning: `axon_protocol` 
+(bin "axon_engine") 
+generated 3 warnings
+error: could not compile 
+`axon_protocol` (bin 
+"axon_engine") due to 1 
+previous error; 3 warnings 
+emitted

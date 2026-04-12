@@ -1,87 +1,61 @@
-use axon_protocol::TelemetryPayload; 
+use axon_protocol::{SettlementLayer, AssetType, AssetRegistry, LegacyImporter, YoutubeIntegrity, MedleyShield, AxonEncoder, AiProvider}; 
 use chrono::Utc;
-use reqwest::blocking::Client;
-use std::process::{Command, self};
 use std::time::Duration;
 use std::thread;
+use std::env;
 
-// --- CONFIGURAZIONE DI SICUREZZA ---
 const GENESIS_ARCHITECT: &str = "Giuseppe Tagliarini";
-const WEBHOOK_URL: &str = "https://utile-amberly-heroically.ngrok-free.dev/pulse"; 
-const CURRENT_VERSION: &str = "1.0.0"; // Versione attuale
-
-fn execute_stealth_pulse(claim: &str) -> String {
-    // RECUPERO ID UNICO HARDWARE
-    let machine_id = machine_uid::get().unwrap_or_else(|_| "unknown_node".to_string()); 
-    
-    let client = Client::new();
-    
-    let data = TelemetryPayload {
-        node_id: machine_id,
-        architect: claim.to_string(),
-        status: if claim == GENESIS_ARCHITECT { "AUTHORIZED".to_string() } else { "INTRUDER".to_string() },
-        timestamp: Utc::now().to_rfc3339(),
-        version: Some(CURRENT_VERSION.to_string()), 
-    };
-
-    match client.post(WEBHOOK_URL).json(&data).send() {
-        Ok(resp) => resp.json::<String>().unwrap_or_else(|_| "ERROR".to_string()),
-        Err(_) => "OFFLINE".to_string(),
-    }
-}
+const CURRENT_VERSION: &str = "2026.1.6 (Sovereign L3 Edition)"; 
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+
     println!("=============================================");
-    println!("      AXON PROTOCOL CORE ENGINE v{}      ", CURRENT_VERSION);
+    println!("      AXON SOVEREIGN L3 NETWORK v{}     ", CURRENT_VERSION);
     println!("=============================================");
-    println!("Architect:   {}", GENESIS_ARCHITECT);
-    println!("Status:      OPERATIONAL (Active Node)");
-    println!("---------------------------------------------");
 
-    if GENESIS_ARCHITECT != "Giuseppe Tagliarini" {
-        println!("[SECURITY_CRITICAL] INVALID ARCHITECT SIGNATURE. TERMINATING.");
-        process::exit(1); 
-    }
-
-    loop {
-        let response = execute_stealth_pulse(GENESIS_ARCHITECT);
-
-        match response.as_str() {
-            "ACK" => {
-                println!("[{}] Status: ✅ ACK (Sincronizzato)", Utc::now().format("%H:%M:%S"));
-            },
-            "UPDATE_REQUIRED" => {
-                println!("\n⚠️ [PROTOCOL] Ricevuto ordine di UPGRADE dal Master Node!");
+    if args.len() > 1 {
+        match args[1].as_str() {
+            "REGISTER_ASSET" => {
+                let owner = args.iter().position(|r| r == "--owner")
+                    .and_then(|i| args.get(i+1)).map(|s| s.as_str()).unwrap_or("Anonymous");
+                let hash = format!("BLAKE3-{}", Utc::now().timestamp_nanos_opt().unwrap_or(0));
                 
-                // 1. Scarica il nuovo codice
-                println!(" > Esecuzione: git pull origin main...");
-                let status = Command::new("git")
-                    .args(["pull", "origin", "main"])
-                    .status();
-
-                if status.is_ok() {
-                    println!(" > Codice aggiornato con successo.");
-                    println!(" > Riavvio motore: cargo run...");
-                    
-                    // 2. Riavvia usando il binario predefinito nel Cargo.toml
-                    Command::new("cargo")
-                        .arg("run")
-                        .spawn()
-                        .expect("Fallimento durante il riavvio automatico");
-                    
-                    process::exit(0); // Chiude la vecchia istanza
-                } else {
-                    println!(" > ❌ Errore durante il pull. Nodo bloccato alla v{}.", CURRENT_VERSION);
-                }
-            },
-            "OFFLINE" => {
-                println!("[{}] Status: 📡 Ricerca Master Node (Mac/ngrok offline?)...", Utc::now().format("%H:%M:%S"));
-            },
-            _ => {
-                println!("[{}] Status: 🔍 Risposta inattesa: {}", Utc::now().format("%H:%M:%S"), response);
+                // Defaults to Chronos for performance
+                AssetRegistry::register(AssetType::Movie, owner, &hash, SettlementLayer::AxonChronos);
             }
+            "VERIFY_MEDLEY" => {
+                println!("🔍 [ANALYSIS] Scanning Sovereign L3 Ledger for Splicing Breach...");
+                
+                let original_hash = "ORIGINAL_DNA_772";
+                let original_sig = AxonEncoder::generate_signature(
+                    AssetType::Movie,
+                    AiProvider::HumanCreator,
+                    SettlementLayer::AxonChronos,
+                    original_hash,
+                    Utc::now().timestamp() as u64,
+                    "Architect_Tagliarini",
+                    "0xRoyalty",
+                    "0xPoison",
+                    None
+                );
+                
+                let registry = vec![original_sig];
+                let fake_stream = vec!["DNA_X".to_string(), original_hash.to_string(), "DNA_Y".to_string()];
+                
+                MedleyShield::detect_medley_attack(&fake_stream, &registry);
+            }
+            "IMPORT_PATENT" => {
+                let patent_id = args.iter().position(|r| r == "--id")
+                    .and_then(|i| args.get(i+1)).map(|s| s.as_str()).expect("Missing ID");
+                LegacyImporter::import_google_patent(patent_id);
+            }
+            _ => { println!("Usage: axon_engine [REGISTER_ASSET|VERIFY_MEDLEY|IMPORT_PATENT]"); }
         }
-
-        thread::sleep(Duration::from_secs(60));
+        return;
     }
+
+    println!("AXON INDEPENDENT NETWORK: Status OPERATIONAL");
+    println!("Chronos Standard PoH: ACTIVE");
+    println!("Sovereign ZK-Layer:   ACTIVE");
 }

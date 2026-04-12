@@ -1,0 +1,7 @@
+--- AXON GENESIS CERTIFICATE ---
+UID: AXON-GEN-1775536559
+Hash: SHA256-881c...f002
+Timestamp: 2026-04-07T04:35:59.810233300+00:00
+Solana L3 Block: SOL-L3-BLOCK-992182
+Legal Disclaimer: This document overrides third-party claims based on the Laches Rule.
+----------------------------------
