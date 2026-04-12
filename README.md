@@ -13,9 +13,10 @@ In an era where deepfakes and "medley attacks" threaten global information secur
 
 ### 🏛️ Governance: The Administrative Board
 AXON is a shared global infrastructure governed by a 100% unanimous technical board.
-- **Founding Board Members:** NVIDIA, Google, Meta, Tesla/xAI, and OpenAI.
-- **Veto Power:** Any core protocol update requires **100% unanimous consent**.
-- **Total Sovereignty:** 100% independent network infrastructure. No platform risk. No external dependencies.
+- **Governance seats open to:** NVIDIA, Google, Meta, Tesla/xAI, and OpenAI.
+- **Genesis Oversight:** Administrative actions are anchored by the Genesis Architect for protocol stability.
+- **Veto Power:** Any core protocol update requires **100% unanimous consent** from active board members.
+- **Total Sovereignty:** 100% independent network infrastructure. No platform risk.
 
 ### 🚀 Technical Architecture: SOVEREIGN L3 NETWORK
 - **AXON Chronos:** Hyper-fast, zero-gas settlement utilizing the Chronos Time Standard for absolute priority.

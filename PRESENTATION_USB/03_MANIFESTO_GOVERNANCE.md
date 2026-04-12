@@ -11,9 +11,9 @@
 In AXON, il codice non è solo legge, è l'unica autorità. Le decisioni umane sono subordinate all'integrità matematica del protocollo. Se un'azione viola i principi di conservazione del DNA digitale, viene rigettata dall'architettura L3 indipendentemente dal voto.
 
 #### 2. Il Consiglio di Amministrazione (The Board)
-La governance è affidata a un'autorità collegiale unanime composta dai titani tecnologici (NVIDIA, Google, Meta, Tesla/xAI, OpenAI) e dal Genesis Architect. 
-- **Unanimità (100%):** Richiesta per ogni modifica ai parametri core del protocollo.
-- **Veto Block:** Un singolo membro può bloccare proposte che minacciano la neutralità tecnologica.
+La governance è affidata a un'autorità collegiale unanime con **posti aperti per:** NVIDIA, Google, Meta, Tesla/xAI, e OpenAI, affiancati dal Genesis Architect. 
+- **Inception:** L'adesione dei membri avviene tramite accettazione dei pilastri tecnici e voto unanime.
+- **Unanimità (100%):** Richiesta dai membri attivi per ogni modifica ai parametri core del protocollo.
 
 #### 3. Standard Chronos (Time Sovereignty)
 Il tempo su AXON è regolato dal **Proof of History (PoH)** di Solana. Nessuna manipolazione temporale (First-to-File fake) è permessa. La priorità cronologica è una certezza matematica, non una disputa legale.

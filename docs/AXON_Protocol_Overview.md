@@ -43,7 +43,7 @@ Per garantire indipendenza totale e prestazioni di livello militare, AXON opera 
 
 AXON è un ecosistema sovrano governato da un'autorità tecnica collegiale:
 
-*   **🏛️ Axon Administrative Board:** La governance è affidata a un consiglio tecnico unanime composto da NVIDIA, Google, Meta, Tesla/xAI, OpenAI e il Genesis Architect. Ogni modifica richiede l'**unanimità (100%)**.
+*   **🏛️ Axon Administrative Board:** Governance is based on a technical board with **seats open to:** NVIDIA, Google, Meta, Tesla/xAI, and OpenAI. Any critical protocol update requires the **unanimità (100%)** of the active board.
 *   **🛡️ The Dark Ledger & ZKP Vault:** La privacy degli asset è garantita dalla registrazione opaca, impedendo il front-running e il patent trolling.
 *   **⚡ Sovereign Inviolability:** In quanto rete indipendente, AXON non subisce influenze da policy di piattaforme terze, garantendo la conservazione della memoria digitale a tempo indeterminato.
 
