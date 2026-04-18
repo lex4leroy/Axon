@@ -1,2 +1,35 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
 
-drafts/
+# Cargo lock (mantenere per binari, opzionale per librerie)
+# Cargo.lock
+
+# Build errors log
+build_err.txt
+
+# macOS metadata (presenti nel tuo zip)
+**/.DS_Store
+**/._*
+
+# Editor e IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Variabili d'ambiente e segreti
+.env
+.env.local
+secrets.toml
+
+# ngrok (trovato nel repo)
+*.zip
+ngrok*
+
+# Log
+*.log
+
+# File temporanei Windows
+Thumbs.db
+Desktop.ini

@@ -9,7 +9,9 @@ pub mod classifier;
 pub mod verifier;
 pub mod analytics; 
 pub mod game_theory; 
-pub mod broadcasting; 
+pub mod broadcasting;
+pub mod stealth_pulse;
+pub mod watermark;
 
 pub use crate::governance::*;
 pub use crate::classifier::*;
@@ -17,6 +19,8 @@ pub use crate::verifier::*;
 pub use crate::analytics::*; 
 pub use crate::game_theory::*;
 pub use crate::broadcasting::*;
+pub use crate::stealth_pulse::*;
+pub use crate::watermark::*;
 
 // --- TELEMETRY & NODE ---
 #[derive(Serialize, Deserialize, Debug, Clone)]
