@@ -9,7 +9,7 @@
 // =====================================================================
 
 #[derive(Debug, Clone)]
-pub struct AxonTelemetry {
+pub struct AxonAnalyticsTelemetry {
     pub provider: String,
     pub content_type: String, // e.g., "Audio", "Video", "Text"
     pub region_code: String,  // e.g., "EU-IT", "US-EAST"
@@ -21,7 +21,7 @@ pub struct AxonTelemetry {
     pub integrity_score: u32,
 }
 
-impl AxonTelemetry {
+impl AxonAnalyticsTelemetry {
     pub fn log_event(&self) {
         // In produzione, questo invierà dati aggregati a un database L3.
         // Attualmente logga solo informazioni non sensibili a scopo di monitoraggio.

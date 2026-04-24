@@ -1,4 +1,4 @@
-use crate::AxonEncoder;
+// --- INTEGRITY SHIELD ---
 
 pub struct IntegrityShield;
 

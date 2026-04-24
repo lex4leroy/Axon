@@ -111,9 +111,9 @@ fn main() {
                 // Temporal DNA
                 println!("\n[Test 4] Temporal DNA — 40% frame loss:");
                 let seq = generate_temporal_dna_sequence(&dna, 30);
-                let surviving: Vec<Vec<u8>> = seq.iter().enumerate()
+                let surviving: Vec<(usize, Vec<u8>)> = seq.iter().enumerate()
                     .filter(|(i, _)| i % 5 != 0 && i % 7 != 0)
-                    .map(|(_, f)| f.clone()).collect();
+                    .map(|(i, f)| (i, f.clone())).collect();
                 let (rec, conf) = reconstruct_dna_from_frames(&surviving, dna.dna_bits.len());
                 let ok = rec.iter().zip(dna.dna_bits.iter()).filter(|(a,b)| a == b).count();
                 println!("   Frame: {}/{} | Bit DNA: {}/{} corretti | Confidence: {:.1}%",

@@ -205,20 +205,23 @@ pub fn generate_temporal_dna_sequence(dna: &AxonDna, num_frames: usize) -> Vec<V
     }).collect()
 }
 
-pub fn reconstruct_dna_from_frames(frame_dnas: &[Vec<u8>], num_bits: usize) -> (Vec<u8>, f32) {
-    if frame_dnas.is_empty() { return (vec![0u8; num_bits], 0.0); }
+pub fn reconstruct_dna_from_frames(indexed_frames: &[(usize, Vec<u8>)], num_bits: usize) -> (Vec<u8>, f32) {
+    if indexed_frames.is_empty() { return (vec![0u8; num_bits], 0.0); }
     let mut votes = vec![0usize; num_bits];
-    let total = frame_dnas.len();
-    for (i, fd) in frame_dnas.iter().enumerate() {
-        let offset = (i * 3) % num_bits;
+    let total = indexed_frames.len();
+    
+    for (orig_idx, fd) in indexed_frames {
+        let offset = (orig_idx * 3) % num_bits;
         let mut aligned = fd.clone();
         if aligned.len() == num_bits {
+            // Ripristina l'allineamento originale usando l'indice corretto
             aligned.rotate_right(offset);
             for (idx, &bit) in aligned.iter().enumerate().take(num_bits) {
                 if bit == 1 { votes[idx] += 1; }
             }
         }
     }
+    
     let rec: Vec<u8> = votes.iter().map(|&v| if v > total/2 { 1u8 } else { 0u8 }).collect();
     let conf = votes.iter().map(|&v| {
         (v as f32 - total as f32/2.0).abs() / (total as f32/2.0)

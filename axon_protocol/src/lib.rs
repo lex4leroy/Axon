@@ -1,8 +1,7 @@
-#![allow(unused_imports)] 
-#![allow(dead_code)]       
+// AXON Protocol Core Library
 
 use serde::{Serialize, Deserialize};
-use chrono::Utc;
+
 
 pub mod governance;
 pub mod classifier;
@@ -112,8 +111,8 @@ impl AxonEncoder {
 // --- ASSET REGISTRY ---
 pub struct AssetRegistry;
 impl AssetRegistry {
-    pub fn register(asset_type: AssetType, owner: &str, hash: &str, layer: SettlementLayer) -> String {
-        let tx_id = format!("0x{:x}", Utc::now().timestamp_nanos_opt().unwrap_or(0));
+    pub fn register(asset_type: AssetType, _owner: &str, _hash: &str, layer: SettlementLayer) -> String {
+        let tx_id = format!("0x{:x}", chrono::Utc::now().timestamp_nanos_opt().unwrap_or(0));
         println!("🚀 [SOVEREIGN-L3] Registrazione {:?} in corso...", asset_type);
         println!("🏗️  Architettura: {:?}", layer);
         println!("🧱 Transaction ID: {}", tx_id);
@@ -128,7 +127,7 @@ impl LegacyImporter {
     pub fn import_google_patent(patent_id: &str) {
         println!("🌐 [LEGACY] Ricerca brevetto: {}...", patent_id);
         
-        let hash = format!("SHA256-RETR-{:x}", Utc::now().timestamp());
+        let hash = format!("SHA256-RETR-{:x}", chrono::Utc::now().timestamp());
         AssetRegistry::register(AssetType::Patent, "Giuseppe Tagliarini", &hash, SettlementLayer::AxonSovereignZK);
         println!("🛡️ [SHIELD_OF_ANTIQUITY] Immunità concessa dalla Rete AXON.");
     }
