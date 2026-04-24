@@ -35,16 +35,17 @@ fn main() {
             }
 
             "VERIFY_MEDLEY" => {
-                println!("Scanning Sovereign L3 Ledger for Splicing Breach...");
+                println!("Scanning Sovereign L3 Ledger for Splicing Breach (using pHash)...");
                 let original_hash = "ORIGINAL_DNA_772";
+                let original_phash = "PHASH_5a1b3c9";
                 let original_sig = AxonEncoder::generate_signature(
                     AssetType::Movie, AiProvider::HumanCreator,
-                    SettlementLayer::AxonChronos, original_hash,
-                    Utc::now().timestamp() as u64,
+                    SettlementLayer::AxonChronos, original_hash, original_phash,
+                    chrono::Utc::now().timestamp() as u64,
                     "Architect_Tagliarini", "0xRoyalty", "0xPoison", None
                 );
                 let registry = vec![original_sig];
-                let fake_stream = vec!["DNA_X".to_string(), original_hash.to_string(), "DNA_Y".to_string()];
+                let fake_stream = vec!["PHASH_X".to_string(), original_phash.to_string(), "PHASH_Y".to_string()];
                 MedleyShield::detect_medley_attack(&fake_stream, &registry);
             }
 

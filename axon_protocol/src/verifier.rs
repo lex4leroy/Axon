@@ -30,8 +30,8 @@ impl MedleyShield {
         
         for (i, segment_hash) in suspicious_hash_stream.iter().enumerate() {
             for original in registry {
-                if &original.hash == segment_hash {
-                    println!("\n⚠️  [ALERT] RILEVATO TAGLIO E CUCI (Medley Attack)!");
+                if &original.phash == segment_hash {
+                    println!("\n⚠️  [ALERT] RILEVATO TAGLIO E CUCI (Medley Attack) basato su pHash!");
                     println!("👉 Frammento originale al secondo {}: Identificato", i);
                     println!("👤 Autore Legittimo: {}", original.owner_id);
                     println!("🧱 Blockchain Proof (L3): https://explorer.axon.sh/tx/{}", original.l3_transaction_id);
